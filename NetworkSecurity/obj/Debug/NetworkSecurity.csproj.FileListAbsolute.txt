@@ -1,0 +1,7 @@
+D:\GitSpace\NetworkSecurity\NetworkSecurity\bin\Debug\NetworkSecurity.exe.config
+D:\GitSpace\NetworkSecurity\NetworkSecurity\bin\Debug\NetworkSecurity.exe
+D:\GitSpace\NetworkSecurity\NetworkSecurity\bin\Debug\NetworkSecurity.pdb
+D:\GitSpace\NetworkSecurity\NetworkSecurity\obj\Debug\NetworkSecurity.csprojAssemblyReference.cache
+D:\GitSpace\NetworkSecurity\NetworkSecurity\obj\Debug\NetworkSecurity.csproj.CoreCompileInputs.cache
+D:\GitSpace\NetworkSecurity\NetworkSecurity\obj\Debug\NetworkSecurity.exe
+D:\GitSpace\NetworkSecurity\NetworkSecurity\obj\Debug\NetworkSecurity.pdb
