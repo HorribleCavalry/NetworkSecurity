@@ -14,6 +14,19 @@ namespace NetworkSecurity
         {
             while (true)
             {
+                string stringToEnkaisa, Key, stringToDekaisa;
+                Console.WriteLine("Please enter your string:");
+                stringToEnkaisa = Console.ReadLine();
+                Console.WriteLine("Please enter your key:");
+                Key = Console.ReadLine();
+                stringToDekaisa = Encrypt(stringToEnkaisa, Key);
+                Console.WriteLine("Now the stringToDekaisa is " + stringToEnkaisa + " and the sKey is " + Key);
+                Console.WriteLine("The current result is " + stringToDekaisa);
+                stringToEnkaisa = Decrypt(stringToDekaisa, Key);
+                Console.WriteLine("Now the Dekaisa result is " + stringToEnkaisa);
+                Console.WriteLine();
+
+
                 string stringToEncrypt, sKey, stringToDecrypt;
                 Console.WriteLine("Please enter your string:");
                 stringToEncrypt = Console.ReadLine();
@@ -24,6 +37,8 @@ namespace NetworkSecurity
                 Console.WriteLine("The current result is " + stringToDecrypt);
                 stringToEncrypt = Decrypt(stringToDecrypt, sKey);
                 Console.WriteLine("Now the decrypted result is " + stringToEncrypt);
+                Console.WriteLine();
+
             }
         }
 
@@ -64,5 +79,86 @@ namespace NetworkSecurity
             StringBuilder ret = new StringBuilder();
             return System.Text.Encoding.Default.GetString(ms.ToArray());
         }
+
+        public string Enkaisa(string init_word, string key)
+        {
+            char enc_result;
+            string result = "";
+            int offset = Convert.ToInt32(key) % 26;//0-26有意义，其他数都没用
+            foreach (char word in init_word)
+            {
+                if (word != 32)//不为NULL
+                {
+                    if (!char.IsUpper(word))//对小写字母进行加密
+                    {
+                        if (word + offset > 122)//小写字母a
+                        {
+                            int a1 = word + offset - 122;
+                            enc_result = Convert.ToChar(96 + a1);
+                        }
+                        else
+                        {
+                            enc_result = Convert.ToChar(word + offset);
+                        }
+                        result += enc_result;
+                    }
+                    if (char.IsUpper(word))//对大写字母进行加密
+                    {
+                        if (word + offset > 90)//大写字母A
+                        {
+                            int a1 = word + offset - 90;
+                            enc_result = Convert.ToChar(64 + a1);
+                        }
+                        else
+                        {
+                            enc_result = Convert.ToChar(word + offset);
+                        }
+                        result += enc_result;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public string Dekaisa(string enc_word, string key)
+        {
+            char dec_result;
+            string result = "";
+            int offset = Convert.ToInt32(key) % 26;//0-26有意义，其他数都没用
+            foreach (char word in enc_word)
+            {
+                if (word != 32)//不为NULL
+                {
+                    if (!char.IsUpper(word))//对小写字母进行加密
+                    {
+                        if (word - offset < 97)//小写字母a,循环控制
+                        {
+                            int a1 = 97 - (word - offset);
+                            dec_result = Convert.ToChar(123 - a1);
+                        }
+                        else
+                        {
+                            dec_result = Convert.ToChar(word - offset);
+                        }
+                        result += dec_result;
+                    }
+                    if (char.IsUpper(word))//对大写字母进行加密
+                    {
+                        if (word - offset < 65)//大写字母A
+                        {
+                            int a1 = 65 - (word - offset);
+                            dec_result = Convert.ToChar(91 - a1);
+                        }
+                        else
+                        {
+                            dec_result = Convert.ToChar(word - offset);
+                        }
+                        result += dec_result;
+                    }
+                }
+            }
+            return result;
+        }
+
     }
 }
